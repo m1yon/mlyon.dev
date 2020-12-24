@@ -1,5 +1,6 @@
 import React from 'react'
 import { Icon } from 'elements'
+import Link from 'next/link'
 import { useDarkMode } from 'hooks'
 
 const Header = () => {
@@ -7,7 +8,9 @@ const Header = () => {
 
   return (
     <header className="container mx-auto py-4 flex justify-between">
-      <p className="font-bold text-2xl">ML</p>
+      <Link href="/">
+        <p className="font-bold text-2xl cursor-pointer">ML</p>
+      </Link>
       <button
         onClick={() => setDarkMode(!darkMode)}
         className="py-1 px-4 rounded flex items-center"
