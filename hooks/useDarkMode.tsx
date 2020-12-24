@@ -18,6 +18,14 @@ export const DarkModeProvider = ({ children }: DarkModeProviderProps) => {
   )
 }
 
+export const withDarkMode = (Component: (props: any) => React.ReactElement) => {
+  return (props: any) => (
+    <DarkModeProvider>
+      <Component {...props} />
+    </DarkModeProvider>
+  )
+}
+
 const useDarkMode = () => {
   const context = useContext(DarkModeContext)
 

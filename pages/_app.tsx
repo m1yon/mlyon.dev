@@ -1,14 +1,10 @@
 import React from 'react'
 import { AppProps } from 'next/app'
-import { DarkModeProvider } from 'hooks/useDarkMode'
+import { withDarkMode } from 'hooks/useDarkMode'
 import 'styles/main.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
-  return (
-    <DarkModeProvider>
-      <Component {...pageProps} />
-    </DarkModeProvider>
-  )
+  return <Component {...pageProps} />
 }
 
-export default App
+export default withDarkMode(App)
