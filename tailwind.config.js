@@ -6,6 +6,8 @@ module.exports = {
     './pages/**/*.tsx',
     './components/*.tsx',
     './components/**/*.tsx',
+    './utils/*.tsx',
+    './utils/**/*.tsx',
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
