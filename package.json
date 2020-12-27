@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10.1.0",
+    "clsx": "^1.1.1",
     "gray-matter": "^4.0.2",
     "next": "10.0.3",
     "next-mdx-remote": "^2.0.0",
