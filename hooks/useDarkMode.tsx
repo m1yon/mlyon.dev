@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext } from 'react'
+import React, { useState, useContext, createContext, useEffect } from 'react'
 
 const DarkModeContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
@@ -10,6 +10,17 @@ type DarkModeProviderProps = {
 
 export const DarkModeProvider = ({ children }: DarkModeProviderProps) => {
   const value = useState(false)
+  const [darkMode, setDarkMode] = value
+
+  // grab the initial value from local storage
+  useEffect(() => {
+    setDarkMode(localStorage.getItem('darkMode') === 'true')
+  }, [])
+
+  // update local storage when context changes
+  useEffect(() => {
+    localStorage.setItem('darkMode', darkMode.toString())
+  }, [value])
 
   return (
     <DarkModeContext.Provider value={value}>

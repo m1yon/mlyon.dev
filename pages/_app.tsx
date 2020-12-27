@@ -6,6 +6,7 @@ import Head from 'next/head'
 import { Header, Hero, Footer } from 'components'
 import clsx from 'clsx'
 import 'tailwindcss/tailwind.css'
+import 'styles/prism-theme.css'
 
 const App = ({ Component, pageProps, router }: AppProps) => {
   const [darkMode] = useDarkMode()

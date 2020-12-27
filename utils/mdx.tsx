@@ -1,5 +1,4 @@
 import Highlight, { defaultProps, Language } from 'prism-react-renderer'
-import theme from 'prism-react-renderer/themes/github'
 
 type CodeProps = {
   children: string
@@ -12,12 +11,12 @@ export const Code = ({ children, className }: CodeProps) => {
   return (
     <Highlight
       {...defaultProps}
-      theme={theme}
+      theme={undefined}
       code={children.trim()}
       language={language}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={`${className} p-4 my-4`} style={style}>
+        <pre className={`${className} p-4 my-4 rounded mb-8`}>
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (
