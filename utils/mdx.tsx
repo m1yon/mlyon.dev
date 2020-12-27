@@ -1,4 +1,6 @@
 import Highlight, { defaultProps, Language } from 'prism-react-renderer'
+import Image from 'next/image'
+import clsx from 'clsx'
 
 type CodeProps = {
   children: string
@@ -32,10 +34,63 @@ export const Code = ({ children, className }: CodeProps) => {
 
 export const components = {
   code: Code,
-  h1: ({ children }: any) => (
-    <h1 className="text-4xl font-bold mb-8">{children}</h1>
+  h1: ({
+    children,
+    className,
+  }: {
+    children: React.ReactNode
+    className?: string
+  }) => (
+    <h1 className={clsx('text-4xl font-bold mb-8', className)}>{children}</h1>
   ),
-  p: ({ children }: any) => (
-    <p className="text-lg leading-7 mb-4">{children}</p>
+  p: ({
+    children,
+    className,
+  }: {
+    children: React.ReactNode
+    className?: string
+  }) => <p className={clsx('text-lg leading-7 mb-4', className)}>{children}</p>,
+  a: ({
+    children,
+    className,
+    href,
+  }: {
+    href?: string
+    children: React.ReactNode
+    className?: string
+  }) => (
+    <a
+      href={href}
+      className={clsx(
+        'hover:underline text-emerald-500 hover:text-emerald-400',
+        className
+      )}
+    >
+      {children}
+    </a>
+  ),
+  img: ({
+    src,
+    width,
+    height,
+    className,
+    alt,
+  }: {
+    src: string
+    width: number | string
+    height: number | string
+    className?: string
+    alt: string
+  }) => (
+    <div>
+      <Image
+        src={src}
+        width={width}
+        height={height}
+        className={className}
+        alt={alt}
+        layout="responsive"
+      />
+    </div>
   ),
 }

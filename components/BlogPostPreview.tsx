@@ -13,15 +13,17 @@ const BlogPostPreview = ({ route, post }: BlogPostPreviewProps) => {
     <Link href={route}>
       <div
         className={clsx(
-          'p-4 border-2 cursor-pointer rounded',
-          'border-gray-200 hover:border-gray-300 dark:border-gray-800 dark:hover:border-gray-700'
+          'p-4 border-b-2 cursor-pointer',
+          'border-gray-200 hover:border-emerald-300 dark:border-gray-800 dark:hover:border-emerald-400 text-emerald-500 hover:text-emerald-400'
         )}
       >
         <h3 className="text-lg font-semibold">{post.data.title}</h3>
         <h4 className="text-gray-600 dark:text-gray-400 mb-2">
           {format(new Date(post.data.date), 'PPP')}
         </h4>
-        <p>{post.data.description}</p>
+        <p className="text-gray-900 dark:text-gray-50">
+          {post.data.description}
+        </p>
       </div>
     </Link>
   )

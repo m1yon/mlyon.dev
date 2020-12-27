@@ -9,9 +9,14 @@ const getAllBlogPosts = async () => {
   const postPaths = fs.readdirSync(postsDirectory)
 
   const posts = await Promise.all(
-    postPaths.map((path) => {
-      return getSingleBlogPost({ path })
-    })
+    postPaths
+      // ignore any files that aren't mdx
+      .filter((path) => {
+        return path.includes('.mdx')
+      })
+      .map((path) => {
+        return getSingleBlogPost({ path })
+      })
   )
 
   return posts
