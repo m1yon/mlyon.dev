@@ -5,6 +5,7 @@ import { components } from 'utils/mdx'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import { format } from 'date-fns'
+import { SEO } from 'components'
 
 type BlogPostProps = {
   post: BlogPost
@@ -16,6 +17,7 @@ const BlogPost = ({ post, mdxSource }: BlogPostProps) => {
 
   return (
     <div>
+      <SEO title={post.data.title} />
       <h1 className="text-4xl font-bold">{post.data.title}</h1>
       <h4 className="text-gray-600 dark:text-gray-400 mb-8">
         {format(new Date(post.data.date), 'PPP')}
