@@ -33,6 +33,9 @@ export const DarkModeProvider = ({ children }: DarkModeProviderProps) => {
   // update local storage when context changes
   useEffect(() => {
     localStorage.setItem('darkMode', darkMode.toString())
+
+    // change the html bg color to match the theme (important for iOS devices)
+    document.documentElement.className = darkMode ? 'dark-bg' : 'light-bg'
   }, [value])
 
   return (

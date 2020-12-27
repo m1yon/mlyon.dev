@@ -1,0 +1,7 @@
+.dark-bg {
+  @apply bg-gray-900;
+}
+
+.light-bg {
+  @apply bg-white;
+}
