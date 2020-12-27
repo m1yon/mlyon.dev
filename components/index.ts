@@ -1,4 +1,5 @@
 import Header from './Header'
 import Hero from './Hero'
+import BlogPostPreview from './BlogPostPreview'
 
-export { Header, Hero }
+export { Header, Hero, BlogPostPreview }

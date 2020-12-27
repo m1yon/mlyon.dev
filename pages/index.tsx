@@ -1,7 +1,7 @@
 import React from 'react'
 import getAllBlogPosts from 'utils/getAllBlogPosts'
 import { GetStaticProps } from 'next'
-import Link from 'next/link'
+import { BlogPostPreview } from 'components'
 
 type HomeProps = {
   posts: BlogPost[]
@@ -10,12 +10,14 @@ type HomeProps = {
 const Home = ({ posts }: HomeProps) => {
   return (
     <>
-      <p>Homepage</p>
-      {posts.map((item) => {
+      <h2 className="text-2xl font-semibold mb-4 px-4">Recent Posts</h2>
+      {posts.map((post) => {
         return (
-          <Link href={`/blog/${item.data.slug}`} key={item.data.slug}>
-            {item.data.title}
-          </Link>
+          <BlogPostPreview
+            key={post.data.slug}
+            route={`/blog/${post.data.slug}`}
+            post={post}
+          />
         )
       })}
     </>

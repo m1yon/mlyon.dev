@@ -14,6 +14,8 @@ const getSingleBlogPost: getSingleBlogPost = async ({ path }) => {
     data: {
       title: post.data.title,
       slug: post.data.slug,
+      description: post.data.description,
+      date: post.data.date.toString(),
     },
   }
 

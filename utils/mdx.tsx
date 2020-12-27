@@ -37,6 +37,6 @@ export const components = {
     <h1 className="text-4xl font-bold mb-8">{children}</h1>
   ),
   p: ({ children }: any) => (
-    <p className="text-xl leading-7 mb-4">{children}</p>
+    <p className="text-lg leading-7 mb-4">{children}</p>
   ),
 }
