@@ -14,7 +14,20 @@ export const DarkModeProvider = ({ children }: DarkModeProviderProps) => {
 
   // grab the initial value from local storage
   useEffect(() => {
-    setDarkMode(localStorage.getItem('darkMode') === 'true')
+    // if this isn't running on the browser then just return
+    if (typeof window === undefined) return
+
+    // grab the value from local storage
+    const localStorageValue = localStorage.getItem('darkMode')
+
+    // if the stored value is true, then set darkMode to true
+    if (localStorageValue === 'true') return setDarkMode(true)
+
+    // if the stored value is false, then set darkMode to false
+    if (localStorageValue === 'false') return setDarkMode(false)
+
+    // if the stored value is undefined or invalid, then use the default system settings
+    setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches)
   }, [])
 
   // update local storage when context changes
