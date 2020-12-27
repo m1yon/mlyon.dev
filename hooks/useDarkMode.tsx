@@ -1,7 +1,11 @@
 import React, { useState, useContext, createContext, useEffect } from 'react'
 
 const DarkModeContext = createContext<
-  [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
+  | [
+      boolean | undefined,
+      React.Dispatch<React.SetStateAction<boolean | undefined>>
+    ]
+  | undefined
 >(undefined)
 
 type DarkModeProviderProps = {
@@ -9,7 +13,7 @@ type DarkModeProviderProps = {
 }
 
 export const DarkModeProvider = ({ children }: DarkModeProviderProps) => {
-  const value = useState(false)
+  const value = useState<boolean | undefined>(undefined)
   const [darkMode, setDarkMode] = value
 
   // grab the initial value from local storage
@@ -32,6 +36,8 @@ export const DarkModeProvider = ({ children }: DarkModeProviderProps) => {
 
   // update local storage when context changes
   useEffect(() => {
+    if (typeof darkMode === 'undefined') return
+
     localStorage.setItem('darkMode', darkMode.toString())
 
     // change the html bg color to match the theme (important for iOS devices)

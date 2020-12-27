@@ -15,7 +15,12 @@ const App = ({ Component, pageProps, router }: AppProps) => {
   const isHomepage = router.route === '/'
 
   return (
-    <div className={clsx(darkMode && 'dark dark-mode')}>
+    <div
+      className={clsx(darkMode && 'dark dark-mode')}
+      // don't show the page until the user's darkMode settings have been loaded
+      // TODO: find a cleaner way to do this
+      style={{ display: typeof darkMode === 'undefined' ? 'none' : undefined }}
+    >
       <Head>
         <title>Michael Lyon</title>
         <link rel="icon" href="/favicon.ico" />
