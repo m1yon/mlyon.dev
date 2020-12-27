@@ -7,7 +7,7 @@ const Hero = () => {
       <div className="block bg-white lg:bg-gray-50 dark:bg-gray-900 lg:dark:bg-gray-800 top-0 right-1/2 rounded-full lg:rounded-none lg:absolute w-52 h-52 lg:w-auto lg:h-auto overflow-hidden">
         <Image src="/hero.png" width={1143 / 4} height={2041 / 4} />
       </div>
-      <div className="text-center lg:ml-80 lg:text-left">
+      <div className="text-center mt-4 lg:ml-80 lg:text-left lg:mt-0">
         <h1 className="text-5xl font-bold">Michael Lyon</h1>
         <h2 className="text-xl text-gray-700 dark:text-gray-400">
           Web App Developer

@@ -36,7 +36,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           {isHomepage ? <Hero /> : null}
         </div>
 
-        <div className="container mx-auto pb-8 pt-16 xl:px-80 2xl:px-96">
+        <div className="container mx-auto pb-8 pt-8 lg:pt-16 xl:px-80 2xl:px-96">
           <Component {...pageProps} />
         </div>
 
