@@ -17,7 +17,12 @@ const BlogPost = ({ post, mdxSource }: BlogPostProps) => {
 
   return (
     <div>
-      <SEO title={post.data.title} />
+      <SEO
+        title={post.data.title}
+        url={`/blog/${post.data.slug}`}
+        description={post.data.description}
+        image={post.data.image}
+      />
       <h1 className="text-4xl font-bold">{post.data.title}</h1>
       <h4 className="text-gray-600 dark:text-gray-400 mb-8">
         {format(new Date(post.data.date), 'PPP')}

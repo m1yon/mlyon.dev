@@ -43,13 +43,24 @@ export const components = {
   }) => (
     <h1 className={clsx('text-4xl font-bold mb-8', className)}>{children}</h1>
   ),
+  h2: ({
+    children,
+    className,
+  }: {
+    children: React.ReactNode
+    className?: string
+  }) => (
+    <h1 className={clsx('text-3xl font-bold mb-6 mt-12', className)}>
+      {children}
+    </h1>
+  ),
   p: ({
     children,
     className,
   }: {
     children: React.ReactNode
     className?: string
-  }) => <p className={clsx('text-lg leading-7 mb-4', className)}>{children}</p>,
+  }) => <p className={clsx('text-lg leading-7 mb-8', className)}>{children}</p>,
   a: ({
     children,
     className,
@@ -92,5 +103,16 @@ export const components = {
         layout="responsive"
       />
     </div>
+  ),
+  ul: ({ children }: { children: React.ReactNode }) => (
+    <ul className="list-inside list-disc mb-8">{children}</ul>
+  ),
+  li: ({ children }: { children: string }) => (
+    <li className="text-lg leading-7 mb-4">{children}</li>
+  ),
+  blockquote: ({ children }: { children: React.ReactNode }) => (
+    <blockquote className="pl-4 border-l-4 border-emerald-400">
+      {children}
+    </blockquote>
   ),
 }

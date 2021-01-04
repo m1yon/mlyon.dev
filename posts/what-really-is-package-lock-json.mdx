@@ -1,0 +1,92 @@
+---
+title: What really is package-lock.json?
+slug: what-really-is-package-lock-json
+description: What is package-lock.json and how should I utilize it?
+date: Mon Jan 04 2021 9:00:00 GMT-0700
+image: /img/mysterious.jpg
+---
+
+<img
+  src="/img/mysterious.jpg"
+  alt="mysterious woods"
+  width="6000"
+  height="4000"
+/>
+<p className="text-center mb-8 py-1">
+  Photo by <a href="https://unsplash.com/@cristofer">Cristofer Jeschke</a>
+</p>
+
+If you've worked with any Node-based project before, you've inevitably encountered the mysterious package-lock.json. You may have opened it up, then immediately closed it after realizing you've mistakenly walked into a 9000 line JSON fun house. You may have asked a co-worker about the file and received a vague answer:
+
+> _it keeps track of dependencies_
+
+This answer might have brought up even more questions. What's the difference between package-lock.json and package.json? Why do we need both? **What really is package-lock.json?**
+
+## The Problem
+
+If you're reading about package-lock.json, you've likely heard of package.json. If you don't know, package.json is a file required for any project that utilizes NPM. It contains metadata and a dependency tree relevant to your project. When you install a package using _npm install_, you'll see the dependency tree in this file update with the new package as well as the latest version number associated with it (if you don't specify one). If you look closely, you'll also notice that each dependency version has a little symbol **^** in front of it by default. This symbol **^** is [semver notation](https://semver.org/) that says to use the _latest minor version_ of the dependency (locking in the major version). _Quick tip: you can use the symbol **~** instead to use the **latest patch version** (thus locking in the major and minor version), or you can omit a symbol completely to lock in the exact version._
+
+At first glance this may sound great, but there's actually a potential problem here. Relying on package.json alone for dependency management could actually cause some serious collaboration inconsistencies. Since the symbol **^** is added by default to every new dependency installed, there aren't any exact dependency versions defined. Using the symbol **^** only locks in the major version, but the minor version and patch version will always opt to use the latest. This means that you, your co-worker, and your project's CI/CD pipeline could all be using different versions of the same dependency while having the exact same package.json.
+
+For example, if I ran **npm install react** on a fresh project right now, I'd get **react: "^17.0.1"** added to my package.json dependencies array. Great, I push the project to GitHub and everything's cool. Next week my co-worker clones the repo, but oh wait- **React 17.0.2** was released a few days ago. When he runs **npm install**: React version **17.0.2** is installed, not React version **17.0.1**. Since it's a patch version everything theoretically should be fine, but bugs sometimes do get through. If there were a bug related to the newer React version, it would likely be very hard for my co-worker and I to pinpoint the cause of it since **the only difference between our local projects would be the node_modules folder.** I can assure you node_modules is not a fun folder to dig through.
+
+## The Solution
+
+This is where package-lock.json comes in to save the day. **The purpose of package-lock.json is to keep track of the _exact_ version of all your project dependencies.** This includes all the dependencies you've listed out in your package.json, but also includes all peer dependencies too (dependencies of your dependencies).
+
+Going back to the example, if I had committed a package-lock.json file initially: my co-worker would have ran **npm install**, Node would have looked at package-lock.json and saw that the exact version of React the project requires is 17.0.1. There would have been no possibility of a version mismatch, **my node_modules and my co-worker's node_modules would have been the exact same.**
+
+## What does the file look like?
+
+Here is a simple example on how package-lock.json is structured. If you create a fresh project using **npm init**, then install React using **npm install react**: React is added as a dependency to the package.json, and a package-lock.json is generated that looks like this:
+
+```json
+{
+  "name": "test",
+  "version": "1.0.0",
+  "lockfileVersion": 1,
+  "requires": true,
+  "dependencies": {
+    "js-tokens": {
+      "version": "4.0.0",
+      "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
+      "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
+    },
+    "loose-envify": {
+      "version": "1.4.0",
+      "resolved": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz",
+      "integrity": "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==",
+      "requires": {
+        "js-tokens": "^3.0.0 || ^4.0.0"
+      }
+    },
+    "object-assign": {
+      "version": "4.1.1",
+      "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
+      "integrity": "sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM="
+    },
+    "react": {
+      "version": "17.0.1",
+      "resolved": "https://registry.npmjs.org/react/-/react-17.0.1.tgz",
+      "integrity": "sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==",
+      "requires": {
+        "loose-envify": "^1.1.0",
+        "object-assign": "^4.1.1"
+      }
+    }
+  }
+}
+```
+
+The dependencies and peer dependencies are combined into a single array, _"dependencies"_. Each package has a _requires_ field that lists the dependencies for that dependency (peer dependencies). React has two dependencies:
+
+- loose-envify
+- object-assign
+
+There is only one dependency between the two (a peer dependency):
+
+- js-tokens
+
+## Conclusion
+
+package-lock.json is a file generated and managed by npm to help better track all your project's dependencies and peer dependencies. You'll likely never need to open or edit this file unless you're team requires very fine-grained dependency management. Keep this file around, **always commit it to your repo!**

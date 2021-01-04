@@ -5,5 +5,6 @@ type BlogPost = {
     slug: string
     description: string
     date: string
+    image: string
   }
 }

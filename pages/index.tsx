@@ -10,7 +10,13 @@ type HomeProps = {
 const Home = ({ posts }: HomeProps) => {
   return (
     <>
-      <SEO title="Michael Lyon" />
+      <SEO
+        title="Michael Lyon"
+        url="/"
+        // TODO: come up with a better description
+        description="My personal blog."
+        image="/img/hero.png"
+      />
       <h2 className="text-2xl font-semibold mb-4 px-4">Recent Posts</h2>
       {posts.map((post) => {
         return (
