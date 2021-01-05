@@ -50,9 +50,9 @@ export const components = {
     children: React.ReactNode
     className?: string
   }) => (
-    <h1 className={clsx('text-3xl font-bold mb-6 mt-12', className)}>
+    <h2 className={clsx('text-3xl font-bold mb-6 mt-12', className)}>
       {children}
-    </h1>
+    </h2>
   ),
   p: ({
     children,
