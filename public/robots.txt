@@ -1,0 +1,3 @@
+User-agent: *
+Sitemap: https://mlyon.dev/sitemap.xml
+Host: https://mlyon.dev
