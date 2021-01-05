@@ -11,9 +11,9 @@ type BlogPostPreviewProps = {
 const BlogPostPreview = ({ route, post }: BlogPostPreviewProps) => {
   return (
     <Link href={route}>
-      <div
+      <a
         className={clsx(
-          'p-4 border-b-2 cursor-pointer',
+          'block p-4 border-b-2 cursor-pointer',
           'border-gray-200 hover:border-emerald-300 dark:border-gray-800 dark:hover:border-emerald-400 text-emerald-500 hover:text-emerald-400'
         )}
       >
@@ -24,7 +24,7 @@ const BlogPostPreview = ({ route, post }: BlogPostPreviewProps) => {
         <p className="text-gray-900 dark:text-gray-50">
           {post.data.description}
         </p>
-      </div>
+      </a>
     </Link>
   )
 }
