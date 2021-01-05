@@ -14,6 +14,14 @@ const SEO = ({ title, url, description, image }: SEOProps) => {
       <title>{title}</title>
       <link rel="icon" href="/favicon.ico" />
 
+      {/* General */}
+      <meta name="description" content={description} />
+      <meta name="image" content={`https://mlyon.dev${image}`} />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
+
       {/* Open Graph */}
       <meta property="og:url" content={`https://mlyon.dev${url}`} />
       <meta property="og:type" content="article" />
