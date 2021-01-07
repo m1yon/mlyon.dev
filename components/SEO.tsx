@@ -13,6 +13,7 @@ const SEO = ({ title, url, description, image }: SEOProps) => {
     <Head>
       <title>{title}</title>
       <link rel="icon" href="/favicon.ico" />
+      <link rel="canonical" href={`https://mlyon.dev${url}`} />
 
       {/* General */}
       <meta name="description" content={description} />

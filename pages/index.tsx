@@ -13,8 +13,7 @@ const Home = ({ posts }: HomeProps) => {
       <SEO
         title="Michael Lyon"
         url="/"
-        // TODO: come up with a better description
-        description="My personal blog."
+        description="Come check out my my personal blog where I share my knowledge and experience. New blog posts every single week!"
         image="/img/hero.png"
       />
       <h2 className="text-2xl font-semibold mb-4 px-4">Recent Posts</h2>
