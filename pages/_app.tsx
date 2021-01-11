@@ -4,8 +4,8 @@ import { withDarkMode } from 'hooks/useDarkMode'
 import { useDarkMode } from 'hooks'
 import { Header, Hero, Footer } from 'components'
 import clsx from 'clsx'
-import 'styles/prism-theme.css'
 import 'styles/global.css'
+import 'styles/prism-theme.css'
 
 const App = ({ Component, pageProps, router }: AppProps) => {
   const [darkMode] = useDarkMode()
