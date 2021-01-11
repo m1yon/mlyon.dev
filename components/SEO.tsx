@@ -25,7 +25,10 @@ const SEO = ({ title, url, description, image }: SEOProps) => {
 
       {/* Open Graph */}
       <meta property="og:url" content={`https://mlyon.dev${url}`} />
-      <meta property="og:type" content="article" />
+      <meta
+        property="og:type"
+        content={url.includes('blog') ? 'article' : 'website'}
+      />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={`https://mlyon.dev${image}`} />
