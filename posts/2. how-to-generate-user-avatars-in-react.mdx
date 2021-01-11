@@ -1,0 +1,204 @@
+---
+title: How to Generate User Avatars in React
+slug: how-to-generate-user-avatars-in-react
+description: Learn how to generate dynamic user avatars that are modern, unique, and persistent.
+date: Mon Jan 11 2021 9:00:00 GMT-0700
+image: /img/avatars.png
+---
+
+<div className="py-48 bg-gray-50 w-full flex gap-2 items-center justify-center mb-8">
+  <UserAvatar name="Michael Lyon" username="user-jfdfdasa90fdsa" />
+  <UserAvatar name="Jfdsa" username="user-jfdakfopfdsafdsadusaa" />
+  <UserAvatar name="Afdsa FDfdsa" username="user-jfdakfopfdsafdhgfda90fdsa" />
+  <UserAvatar name="Adsad ADgDF" username="user-jfddsadusa90fdsa" />
+  <UserAvatar name="FDS sf" username="user-jfdakfdsadusa90fdsa" />
+  <UserAvatar name="FD" username="user-jfdakhgfdhdusa90fdsa" />
+  <UserAvatar name="VXC F" username="user-jfdagfdsadusa90fdsa" />
+  <UserAvatar name="AS" username="usergffdsa90fdsa" />
+  <UserAvatar name="GFD" username="user-jfdafdsadsa" />
+</div>
+
+Avatars are a fantastic UI element for any web app that features a user system. They help brighten up the site, give users a sense of identity, and help the end-user distinguishes between individual users. It's one of the best bang-for-your-buck components out there, and it's definitely worth the (small) time investment.
+
+## What makes fantastic user avatars?
+
+There are a three attributes that define fantastic user avatars:
+
+- **Unique.** There may be duplicates, but very rarely.
+- **Persistent. E**ach user's avatar should look exactly the same indefinitely, even across sessions and devices.
+- **Beautiful.** User avatars are likely going to be plastered all over your app, they should look nice!
+
+## The plan
+
+We won't be using localstorage or caching them server-side like other methods. We'll actually be creating a simple client-side [hashing algorithm](https://blog.jscrambler.com/hashing-algorithms/#:~:text=Hashing%20algorithms%20are%20functions%20that,to%20read%20its%20content%20anymore.) to handle uniqueness and persistence.
+
+## The guide
+
+Before we get started, there are three packages you'll want. They aren't required, but they are packages that make my life easier, and I think you'll find use in them too.
+
+1. [tailwindcss](https://tailwindcss.com/) - a CSS utility library that's going to make styling this avatar a breeze.
+2. [clsx](https://www.npmjs.com/package/clsx) - a small tool used to simplify expressions in the className prop. I find this tool _very_ handy when paired with tailwindcss.
+3. [lodash](https://lodash.com/) - a JavaScript utility library that will make some of the logic easier.
+
+### Step 1: Create a `UserAvatar.js` file
+
+This file will house our UserAvatar component, throw in this code for a simple boilerplate:
+
+```jsx
+import React from 'react'
+
+const UserAvatar = () => {
+  return (
+    <span className="bg-blue-500 text-blue-100 rounded-full w-9 h-9 inline-flex items-center justify-center text-lg font-semibold select-none">
+      ML
+    </span>
+  )
+}
+
+export default UserAvatar
+```
+
+Pretty basic, just a few tailwindcss classes and we have a pretty nice looking avatar! _Note: I won't be showing the file where I'm actually rendering the component, but I'd recommend rendering this component somewhere in your app and looking at the output as you follow along._
+
+### Step 2: Create different color variants
+
+We'll want different color variants to help distinguish users from each other. For now, we'll just throw those variants into an array, and utilize clsx and lodash to pick one at random:
+
+```jsx
+import React from 'react'
+import clsx from 'clsx'
+import _ from 'lodash'
+
+const UserAvatar = () => {
+  return (
+    <span
+      className={clsx(
+        'rounded-full w-9 h-9 inline-flex items-center justify-center text-lg font-semibold select-none',
+        _.sample(colorVariants)
+      )}
+    >
+      ML
+    </span>
+  )
+}
+
+export default UserAvatar
+
+const colorVariants = [
+  'bg-red-500 text-red-100',
+  'bg-blue-500 text-blue-100',
+  'bg-purple-500 text-purple-100',
+  'bg-green-500 text-green-100',
+]
+```
+
+We've created the colorVariants array _below_ the component. This provides a nice [newspaper code structure](https://kentcdodds.com/blog/newspaper-code-structure) for the file. We've also removed `bg-blue-500 text-blue-100` from the original className string and are now using lodash to pick a random set of colors from the color variants array. Every time you refresh the page, a new set of colors will be randomly selected.
+
+### Step 3: Making the avatar persistant
+
+Here is where that hashing algorithm comes in. We'll generate a hash for the input, and map the hashed value to our colorVariants array. The input of a hash function will always map to the same output. Let's create our own function that does this:
+
+```jsx
+import React from 'react'
+import clsx from 'clsx'
+
+const UserAvatar = ({ initials }) => {
+  return (
+    <span
+      className={clsx(
+        'rounded-full w-9 h-9 inline-flex items-center justify-center text-lg font-semibold select-none',
+        colorVariants[getColorValue(initials)]
+      )}
+    >
+      {initials}
+    </span>
+  )
+}
+
+export default UserAvatar
+
+const colorVariants = [
+  'bg-red-500 text-red-100',
+  'bg-blue-500 text-blue-100',
+  'bg-purple-500 text-purple-100',
+  'bg-green-500 text-green-100',
+]
+
+const getColorValue = (value) => {
+  const hashValue = value
+    // split the string into an array chars ("ML" => ["M", "L"])
+    .split('')
+    // convert each char into it's charCode value ("B" => 66)
+    .map((char) => +char.charCodeAt(0))
+    // add up all the values
+    .reduce((accumulator, currentValue) => (accumulator += currentValue))
+
+  // modulus the hashValue by colorVariants.length to get a random
+  // value between 0 and colorVariants.length - 1
+  return hashValue % colorVariants.length
+}
+```
+
+We've accepted a new prop `initials` to see this in action. Our new getColorValue function generates a hash for the provided value and maps the output to an item in our colorVariants array. If you create a few of these components with different initials, you'll see that each has a random color assigned, and they persist across page refreshes.
+
+### Step 4: Improving uniqueness
+
+Since the input of our hash function inside getColorValue is the initials, the same set of initials will always map to the same color. **This isn't good**, differentiating between two people with the same name/initials is one of the main reasons we want things color-coded. The fix for this is simple: we'll use the **username** of the user instead to generate the hashValue. We also probably don't have the initials of the user's name on hand, so we'll go ahead and dynamically generate those as well:
+
+```jsx
+import React from 'react'
+import clsx from 'clsx'
+import _ from 'lodash'
+
+const UserAvatar = ({ name, username }) => {
+  // separate the name out into words
+  const words = _.words(name)
+
+  return (
+    <span
+      className={clsx(
+        'rounded-full w-9 h-9 inline-flex items-center justify-center text-lg font-semibold select-none',
+        colorVariants[getColorValue(username)]
+      )}
+    >
+      {words[0][0].toUpperCase()}
+      {words[1]?.[0].toUpperCase()}
+    </span>
+  )
+}
+
+export default UserAvatar
+
+const colorVariants = [
+  'bg-red-500 text-red-100',
+  'bg-blue-500 text-blue-100',
+  'bg-purple-500 text-purple-100',
+  'bg-green-500 text-green-100',
+]
+
+const getColorValue = (value) => {
+  const hashValue = value
+    // split the string into an array chars ("ML" => ["M", "L"])
+    .split('')
+    // convert each char into it's charCode value ("B" => 66)
+    .map((char) => +char.charCodeAt(0))
+    // add up all the values
+    .reduce((accumulator, currentValue) => (accumulator += currentValue))
+
+  // modulus the hashValue by colorVariants.length to get a random
+  // value between 0 and colorVariants.length - 1
+  return hashValue % colorVariants.length
+}
+```
+
+We're now generating the avatar color from the username, and dynamically generating the initials from the actual name of the user.
+
+## What next?
+
+- [Convert the component to TypeScript.](https://www.typescriptlang.org/) The tutorial is in JavaScript to keep things simple, but having static type checking is amazing.
+- Accept a `size` prop and dynamically change the size of the avatar based on the value. Be sure to include a default prop value.
+- Add support for custom avatar images, only use the generated variant as a backup.
+
+## Conclusion
+
+We've successfully created user avatars the have all three attributes of fantastic user avatars! This was a cool little solution I had implemented in a work project recently and had thought it would be cool to share. It's one of the few times my algorithms class actually helped me in React 😅.

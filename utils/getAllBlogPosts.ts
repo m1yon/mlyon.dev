@@ -1,5 +1,6 @@
 import { join } from 'path'
 import fs from 'fs'
+import _ from 'lodash'
 import getSingleBlogPost from './getSingleBlogPost'
 
 type getAllBlogPosts = () => Promise<BlogPost[]>
@@ -19,7 +20,10 @@ const getAllBlogPosts = async () => {
       })
   )
 
-  return posts
+  // sort posts by date (desc)
+  const orderedPosts = _.orderBy(posts, 'data.date', 'desc')
+
+  return orderedPosts
 }
 
 export default getAllBlogPosts

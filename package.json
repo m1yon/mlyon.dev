@@ -12,6 +12,7 @@
     "clsx": "^1.1.1",
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
+    "lodash": "^4.17.20",
     "next": "10.0.3",
     "next-mdx-remote": "^2.0.0",
     "postcss": "^8.2.1",
@@ -21,6 +22,7 @@
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.167",
     "@types/mdx-js__react": "^1.5.3",
     "@types/node": "^14.14.14",
     "@types/react": "^17.0.0",
