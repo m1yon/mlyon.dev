@@ -34,6 +34,8 @@ const SEO = ({ title, url, description, image }: SEOProps) => {
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={`https://mlyon.dev${image}`} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content="@__mlyon" />
     </Head>
   )
 }
