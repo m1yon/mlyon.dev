@@ -16,6 +16,7 @@ const Home = ({ posts }: HomeProps) => {
         description="Come check out my personal blog where I share my knowledge and experience as a professional developer. New blog posts every single week!"
         image="/img/hero.png"
       />
+
       <h2 className="text-2xl font-semibold mb-4 px-4">Recent Posts</h2>
       {posts.map((post) => {
         return (
