@@ -4,7 +4,6 @@ import { withDarkMode } from 'hooks/useDarkMode'
 import { useDarkMode } from 'hooks'
 import { Header, Hero, Footer } from 'components'
 import clsx from 'clsx'
-import 'tailwindcss/tailwind.css'
 import 'styles/prism-theme.css'
 import 'styles/global.css'
 
