@@ -13,7 +13,6 @@ type BlogPostProps = {
 }
 
 const BlogPost = ({ post, mdxSource }: BlogPostProps) => {
-  console.log('mdxSource', mdxSource)
   const content = hydrate(mdxSource, { components })
 
   return (
