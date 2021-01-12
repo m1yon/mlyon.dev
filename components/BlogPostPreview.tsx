@@ -14,7 +14,7 @@ const BlogPostPreview = ({ route, post }: BlogPostPreviewProps) => {
       <a
         className={clsx(
           'block p-4 border-b-2 cursor-pointer',
-          'border-gray-200 hover:border-emerald-300 dark:border-gray-800 dark:hover:border-emerald-400 text-emerald-500 hover:text-emerald-400'
+          'border-gray-300 bg-white dark:bg-gray-800 mb-2 hover:border-emerald-500 dark:border-gray-700 dark:hover:border-emerald-400 hover:text-emerald-500'
         )}
       >
         <h3 className="text-lg font-semibold">{post.data.title}</h3>

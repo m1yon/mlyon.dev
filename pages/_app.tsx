@@ -19,10 +19,10 @@ const App = ({ Component, pageProps, router }: AppProps) => {
       // TODO: find a cleaner way to do this
       style={{ display: typeof darkMode === 'undefined' ? 'none' : undefined }}
     >
-      <div className="relative text-gray-900 dark:text-gray-50 min-h-screen flex flex-col flex-1 items-center overflow-x-hidden bg-white dark:bg-gray-900 pb-16">
+      <div className="relative text-gray-900 dark:text-gray-50 min-h-screen flex flex-col flex-1 items-center overflow-x-hidden bg-gray-50 dark:bg-gray-900 pb-16">
         <div
           className={clsx([
-            isHomepage && 'bg-gray-50 dark:bg-gray-800',
+            isHomepage && 'bg-gray-200 dark:bg-gray-800',
             'w-full overflow-hidden',
           ])}
         >
