@@ -7,5 +7,5 @@
 }
 
 .light-bg {
-  @apply bg-white;
+  @apply bg-gray-50;
 }
