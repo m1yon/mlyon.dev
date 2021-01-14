@@ -5,12 +5,12 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mlyon.dev/blog/what-really-is-package-lock-json/</loc>
+    <loc>https://mlyon.dev/blog/what-really-is-package-lock-json</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mlyon.dev/blog/how-to-generate-user-avatars-in-react/</loc>
+    <loc>https://mlyon.dev/blog/how-to-generate-user-avatars-in-react</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>

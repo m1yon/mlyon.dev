@@ -4,7 +4,7 @@ import Image from 'next/image'
 const Hero = () => {
   return (
     <div className="container mx-auto py-8 lg:py-36 flex flex-col justify-center relative items-center lg:flex-row">
-      <div className="block bg-white lg:bg-gray-200 dark:bg-gray-900 lg:dark:bg-gray-800 top-0 right-1/2 rounded-full lg:rounded-none lg:absolute w-52 h-52 lg:w-auto lg:h-auto overflow-hidden">
+      <div className="block bg-white lg:bg-gray-100 dark:bg-gray-900 lg:dark:bg-gray-800 top-0 right-1/2 rounded-full lg:rounded-none lg:absolute w-52 h-52 lg:w-auto lg:h-auto overflow-hidden">
         <Image
           src="/img/hero.png"
           width={1143 / 4}
