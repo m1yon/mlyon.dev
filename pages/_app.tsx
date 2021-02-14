@@ -20,6 +20,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
         'h-screen w-screen',
         darkMode ? 'os-theme-light' : 'os-theme-dark',
       ])}
+      options={{ nativeScrollbarsOverlaid: { initialize: false } }}
     >
       <div
         className={clsx(darkMode && 'dark dark-mode')}
