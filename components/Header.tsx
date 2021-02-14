@@ -2,14 +2,26 @@ import React from 'react'
 import { Icon } from 'elements'
 import Link from 'next/link'
 import { useDarkMode } from 'hooks'
+import clsx from 'clsx'
 
-const Header = () => {
+type HeaderProps = {
+  isHomepage?: boolean
+}
+
+const Header = ({ isHomepage }: HeaderProps) => {
   const [darkMode, setDarkMode] = useDarkMode()
 
   return (
     <header className="container mx-auto py-4 flex justify-between">
       <Link href="/">
-        <p className="font-bold text-2xl cursor-pointer text-cyan-500 dark:text-emerald-400">
+        <p
+          className={clsx([
+            'font-bold text-2xl cursor-pointer',
+            isHomepage
+              ? 'text-cyan-600 dark:text-emerald-200'
+              : 'text-cyan-600 dark:text-emerald-400',
+          ])}
+        >
           ML
         </p>
       </Link>

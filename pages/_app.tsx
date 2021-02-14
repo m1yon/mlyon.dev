@@ -30,15 +30,15 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           display: typeof darkMode === 'undefined' ? 'none' : undefined,
         }}
       >
-        <div className="relative text-gray-900 dark:text-gray-50 min-h-screen flex flex-col flex-1 items-center overflow-x-hidden bg-gray-50 dark:bg-gray-900 pb-16">
+        <div className="relative text-gray-900 dark:text-gray-50 min-h-screen flex flex-col flex-1 items-center overflow-x-hidden bg-white dark:bg-gray-900 pb-16">
           <div
             className={clsx([
               isHomepage &&
-                'bg-gradient-to-b from-cyan-100 to-cyan-100 dark:from-emerald-700 dark:to-emerald-600',
+                'bg-gradient-to-b from-cyan-50 to-cyan-100 dark:from-emerald-800 dark:to-emerald-600',
               'w-full overflow-hidden',
             ])}
           >
-            <Header />
+            <Header isHomepage={isHomepage} />
             {isHomepage ? <Hero /> : null}
           </div>
 

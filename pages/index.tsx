@@ -18,7 +18,7 @@ const Home = ({ posts }: HomeProps) => {
       />
 
       <svg
-        className="absolute text-gray-50 dark:text-gray-900"
+        className="absolute text-white dark:text-gray-900"
         style={{
           top: 438,
           left: '-4%',
@@ -37,7 +37,7 @@ const Home = ({ posts }: HomeProps) => {
         />
       </svg>
 
-      <h2 className="text-lg font-bold px-4 text-emerald-500 dark:text-cyan-500 tracking-widest">
+      <h2 className="text-lg font-bold px-4 text-emerald-600 dark:text-cyan-500 tracking-widest">
         RECENT POSTS
       </h2>
       {posts.map((post) => {

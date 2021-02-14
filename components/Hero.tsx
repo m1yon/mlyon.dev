@@ -19,7 +19,7 @@ const Hero = () => {
         </h2>
         <a
           href="https://twitter.com/__mlyon"
-          className="dark:text-emerald-400 dark:hover:text-emerald-300 text-cyan-500 hover:text-cyan-400 text-lg font-semibold"
+          className="dark:text-emerald-200 dark:hover:text-emerald-100 text-cyan-700 hover:text-cyan-600 text-lg font-semibold"
         >
           @__mlyon
         </a>

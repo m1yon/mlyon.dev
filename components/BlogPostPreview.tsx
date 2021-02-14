@@ -19,7 +19,7 @@ const BlogPostPreview = ({ route, post }: BlogPostPreviewProps) => {
         <a
           className={clsx(
             'block p-4 cursor-pointer',
-            'mb-2 hover:text-cyan-500 dark:hover:text-emerald-400'
+            'mb-2 hover:text-cyan-600 dark:hover:text-emerald-400'
           )}
         >
           <h3 className="text-2xl font-bold">{post.data.title}</h3>
@@ -34,7 +34,7 @@ const BlogPostPreview = ({ route, post }: BlogPostPreviewProps) => {
             {isHovered ? (
               <Icon
                 type="arrow-right"
-                className="w-4 h-4 text-cyan-500 dark:text-emerald-400 inline mt-0.5"
+                className="w-4 h-4 text-cyan-600 dark:text-emerald-400 inline mt-0.5"
               />
             ) : null}
           </p>

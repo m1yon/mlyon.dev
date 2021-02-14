@@ -91,7 +91,7 @@ export const components = {
     <a
       href={href}
       className={clsx(
-        'hover:underline text-cyan-500 hover:text-cyan-400 dark:text-emerald-400 dark:hover:text-emerald-300',
+        'hover:underline text-cyan-600 hover:text-cyan-500 dark:text-emerald-400 dark:hover:text-emerald-300',
         className
       )}
     >
