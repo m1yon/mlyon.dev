@@ -9,7 +9,9 @@ const Header = () => {
   return (
     <header className="container mx-auto py-4 flex justify-between">
       <Link href="/">
-        <p className="font-bold text-2xl cursor-pointer">ML</p>
+        <p className="font-bold text-2xl cursor-pointer text-cyan-500 dark:text-emerald-400">
+          ML
+        </p>
       </Link>
       <button
         onClick={() => setDarkMode(!darkMode)}

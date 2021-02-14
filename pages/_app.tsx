@@ -22,7 +22,8 @@ const App = ({ Component, pageProps, router }: AppProps) => {
       <div className="relative text-gray-900 dark:text-gray-50 min-h-screen flex flex-col flex-1 items-center overflow-x-hidden bg-gray-50 dark:bg-gray-900 pb-16">
         <div
           className={clsx([
-            isHomepage && 'bg-gray-100 dark:bg-gray-800',
+            isHomepage &&
+              'bg-gradient-to-b from-cyan-100 to-cyan-100 dark:from-emerald-700 dark:to-emerald-600',
             'w-full overflow-hidden',
           ])}
         >
@@ -30,7 +31,12 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           {isHomepage ? <Hero /> : null}
         </div>
 
-        <div className="container mx-auto pb-8 pt-8 lg:pt-16 xl:px-80 2xl:px-96">
+        <div
+          className={clsx([
+            'container mx-auto pb-8 xl:px-80 2xl:px-96',
+            isHomepage ? '' : 'pt-8 lg:pt-16 ',
+          ])}
+        >
           <Component {...pageProps} />
         </div>
 
