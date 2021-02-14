@@ -1,7 +1,7 @@
 import React from 'react'
 
 type IconProps = {
-  type: 'sun' | 'moon'
+  type: 'sun' | 'moon' | 'arrow-right'
   className?: string
 }
 
@@ -15,6 +15,7 @@ const Icon = ({ type, className }: IconProps) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
+          className={className}
         >
           <path
             fillRule="evenodd"
@@ -31,8 +32,26 @@ const Icon = ({ type, className }: IconProps) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
+          className={className}
         >
           <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+        </svg>
+      )
+      break
+
+    case 'arrow-right':
+      IconSVG = (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          className={className}
+        >
+          <path
+            fillRule="evenodd"
+            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+            clipRule="evenodd"
+          />
         </svg>
       )
       break
@@ -41,7 +60,7 @@ const Icon = ({ type, className }: IconProps) => {
       IconSVG = null
   }
 
-  return <span className={className}>{IconSVG}</span>
+  return IconSVG
 }
 
 export default Icon

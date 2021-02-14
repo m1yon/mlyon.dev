@@ -13,13 +13,13 @@
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
     "lodash": "^4.17.20",
-    "next": "10.0.3",
+    "next": "^10.0.6",
     "next-mdx-remote": "^2.0.0",
     "postcss": "^8.2.1",
     "prism-react-renderer": "^1.1.1",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "tailwindcss": "^2.0.2"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "tailwindcss": "^2.0.3"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.167",

@@ -17,7 +17,9 @@ const Home = ({ posts }: HomeProps) => {
         image="/img/hero.png"
       />
 
-      <h2 className="text-2xl font-semibold mb-4 px-4">Recent Posts</h2>
+      <h2 className="text-lg font-bold px-4 text-emerald-500 dark:text-cyan-500 tracking-widest">
+        RECENT POSTS
+      </h2>
       {posts.map((post) => {
         return (
           <BlogPostPreview
