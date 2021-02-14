@@ -132,7 +132,7 @@ export const components = {
     <li className="text-lg leading-7 mb-4">{children}</li>
   ),
   blockquote: ({ children }: { children: React.ReactNode }) => (
-    <blockquote className="pl-4 border-l-4 border-emerald-400">
+    <blockquote className="pl-4 border-l-4 border-cyan-400 dark:border-emerald-400">
       {children}
     </blockquote>
   ),
