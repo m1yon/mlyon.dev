@@ -2,19 +2,17 @@ import React from 'react'
 import getAllBlogPosts from 'utils/getAllBlogPosts'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { components } from 'utils/mdx'
-import hydrate from 'next-mdx-remote/hydrate'
-import renderToString from 'next-mdx-remote/render-to-string'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { serialize } from 'next-mdx-remote/serialize'
 import { format } from 'date-fns'
 import { SEO } from 'components'
 
 type BlogPostProps = {
   post: BlogPost
-  mdxSource: React.ReactNode
+  mdxSource: MDXRemoteSerializeResult<Record<string, unknown>>
 }
 
 const BlogPost = ({ post, mdxSource }: BlogPostProps) => {
-  const content = hydrate(mdxSource, { components })
-
   return (
     <div>
       <SEO
@@ -27,7 +25,7 @@ const BlogPost = ({ post, mdxSource }: BlogPostProps) => {
       <h4 className="text-gray-600 dark:text-gray-400 mb-8">
         {format(new Date(post.data.date), 'PPP')}
       </h4>
-      {content}
+      <MDXRemote {...mdxSource} components={components} />
     </div>
   )
 }
@@ -45,7 +43,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       post,
-      mdxSource: await renderToString(post?.content || '', { components }),
+      mdxSource: await serialize(post?.content || ''),
     },
   }
 }
