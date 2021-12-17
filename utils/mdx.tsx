@@ -119,6 +119,7 @@ export const components = {
         className={className}
         alt={alt}
         layout="responsive"
+        priority
       />
     </div>
   ),
