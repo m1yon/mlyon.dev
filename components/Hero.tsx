@@ -15,7 +15,7 @@ const Hero = () => {
       <div className="text-center mt-4 lg:ml-80 lg:text-left lg:mt-0 mb-16 lg:mb-12">
         <h1 className="text-5xl font-bold">Michael Lyon</h1>
         <h2 className="text-xl text-gray-700 dark:text-gray-100">
-          Web App Developer
+          JavaScript Engineer
         </h2>
         <a
           href="https://twitter.com/__mlyon"
